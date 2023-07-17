@@ -1,0 +1,28 @@
+﻿@model List<Zero_Hunger.Models.DistributionDTO>
+@{
+    ViewBag.Title = "CheckDistribution";
+    Layout = "~/Views/Shared/_newLayout3.cshtml";
+}
+
+<h2>CheckDistribution</h2>
+
+<table class="table table-bordered">
+    <tr>
+        <th>Id</th>
+        <th>Restaurent Id</th>
+        <th>Food Item</th>
+        <th>Maximum Preserve Time</th>
+        <th></th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.Employee_Id</td>
+            <td>@item.Restaurent_Id</td>
+            <td>@item.Food_Item</td>
+            <td>@item.Max_Preservation_Time</td>
+            <td><a href="/Employee/doneDelivery" class="btn btn-success">Click if Done</a></td>
+        </tr>
+    }
+</table>
+

@@ -1,0 +1,100 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Zero_HungerModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Restaurent">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Username" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="newRequests" Relationship="Zero_HungerModel.FK_newRequests_Restaurents" FromRole="Restaurent" ToRole="newRequest" />
+    <NavigationProperty Name="Distribution2" Relationship="Zero_HungerModel.FK_Distribution2_Restaurents" FromRole="Restaurent" ToRole="Distribution2" />
+  </EntityType>
+  <EntityContainer Name="Zero_HungerEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Restaurents" EntityType="Self.Restaurent" />
+    <EntitySet Name="Employees2" EntityType="Zero_HungerModel.Employees2" />
+    <EntitySet Name="newRequests" EntityType="Zero_HungerModel.newRequest" />
+    <AssociationSet Name="FK_newRequests_Restaurents" Association="Zero_HungerModel.FK_newRequests_Restaurents">
+      <End Role="Restaurent" EntitySet="Restaurents" />
+      <End Role="newRequest" EntitySet="newRequests" />
+    </AssociationSet>
+    <EntitySet Name="Distribution2" EntityType="Zero_HungerModel.Distribution2" />
+    <AssociationSet Name="FK_Distribution2_Employees2" Association="Zero_HungerModel.FK_Distribution2_Employees2">
+      <End Role="Employees2" EntitySet="Employees2" />
+      <End Role="Distribution2" EntitySet="Distribution2" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Distribution2_Restaurents" Association="Zero_HungerModel.FK_Distribution2_Restaurents">
+      <End Role="Restaurent" EntitySet="Restaurents" />
+      <End Role="Distribution2" EntitySet="Distribution2" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Employees2">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Username" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Password" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Distribution2" Relationship="Zero_HungerModel.FK_Distribution2_Employees2" FromRole="Employees2" ToRole="Distribution2" />
+  </EntityType>
+  <EntityType Name="newRequest">
+    <Key>
+      <PropertyRef Name="Cid" />
+    </Key>
+    <Property Name="Cid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Restaurent_Id" Type="Int32" Nullable="false" />
+    <Property Name="Food_Item" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Max_Preservation_Time" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Restaurent" Relationship="Zero_HungerModel.FK_newRequests_Restaurents" FromRole="newRequest" ToRole="Restaurent" />
+  </EntityType>
+  <Association Name="FK_newRequests_Restaurents">
+    <End Type="Zero_HungerModel.Restaurent" Role="Restaurent" Multiplicity="1" />
+    <End Type="Zero_HungerModel.newRequest" Role="newRequest" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Restaurent">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="newRequest">
+        <PropertyRef Name="Restaurent_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Distribution2">
+    <Key>
+      <PropertyRef Name="Did" />
+    </Key>
+    <Property Name="Did" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Employee_Id" Type="Int32" Nullable="false" />
+    <Property Name="Restaurent_Id" Type="Int32" Nullable="false" />
+    <Property Name="Food_Item" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Max_Preservation_Time" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Employees2" Relationship="Zero_HungerModel.FK_Distribution2_Employees2" FromRole="Distribution2" ToRole="Employees2" />
+    <NavigationProperty Name="Restaurent" Relationship="Zero_HungerModel.FK_Distribution2_Restaurents" FromRole="Distribution2" ToRole="Restaurent" />
+  </EntityType>
+  <Association Name="FK_Distribution2_Employees2">
+    <End Type="Zero_HungerModel.Employees2" Role="Employees2" Multiplicity="1" />
+    <End Type="Zero_HungerModel.Distribution2" Role="Distribution2" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employees2">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Distribution2">
+        <PropertyRef Name="Employee_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Distribution2_Restaurents">
+    <End Type="Zero_HungerModel.Restaurent" Role="Restaurent" Multiplicity="1" />
+    <End Type="Zero_HungerModel.Distribution2" Role="Distribution2" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Restaurent">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Distribution2">
+        <PropertyRef Name="Restaurent_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

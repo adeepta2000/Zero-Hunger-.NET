@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Zero_HungerModelStoreContainer" CdmEntityContainer="Zero_HungerEntities">
+    <EntitySetMapping Name="Restaurents">
+      <EntityTypeMapping TypeName="Zero_HungerModel.Restaurent">
+        <MappingFragment StoreEntitySet="Restaurents">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Username" ColumnName="Username" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Employees2">
+      <EntityTypeMapping TypeName="Zero_HungerModel.Employees2">
+        <MappingFragment StoreEntitySet="Employees2">
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="Username" ColumnName="Username" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="newRequests">
+      <EntityTypeMapping TypeName="Zero_HungerModel.newRequest">
+        <MappingFragment StoreEntitySet="newRequests">
+          <ScalarProperty Name="Max_Preservation_Time" ColumnName="Max_Preservation_Time" />
+          <ScalarProperty Name="Food_Item" ColumnName="Food_Item" />
+          <ScalarProperty Name="Restaurent_Id" ColumnName="Restaurent_Id" />
+          <ScalarProperty Name="Cid" ColumnName="Cid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Distribution2">
+      <EntityTypeMapping TypeName="Zero_HungerModel.Distribution2">
+        <MappingFragment StoreEntitySet="Distribution2">
+          <ScalarProperty Name="Max_Preservation_Time" ColumnName="Max_Preservation_Time" />
+          <ScalarProperty Name="Food_Item" ColumnName="Food_Item" />
+          <ScalarProperty Name="Restaurent_Id" ColumnName="Restaurent_Id" />
+          <ScalarProperty Name="Employee_Id" ColumnName="Employee_Id" />
+          <ScalarProperty Name="Did" ColumnName="Did" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

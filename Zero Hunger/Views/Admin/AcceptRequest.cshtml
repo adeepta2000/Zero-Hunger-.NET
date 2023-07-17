@@ -1,0 +1,20 @@
+﻿@model Zero_Hunger.Models.RequestDTO
+@{
+    ViewBag.Title = "AcceptRequest";
+    Layout = "~/Views/Shared/_AcceptLayout.cshtml";
+}
+
+<h2>Accept Request</h2>
+<form action="/admin/submit2" method="post" class="form-group">
+    <input type="hidden" name="Cid" value="@Model.Cid" /><br />
+    Restaurent Id:<input class="form-control" type="text" name="Restaurent_Id" value="@Model.Restaurent_Id" /><br />
+    Food Item:<input class="form-control" type="text" name="Food_Item" value="@Model.Food_Item" /><br />
+    Maximum Preservation Time:<input class="form-control" type="text" name="Max_Preservation_Time" value="@Model.Max_Preservation_Time" /><br />
+    Assign Employee:<input class="form-control" type="text" name="Employee_Id" placeholder="Employee Id" /><br />
+
+
+    <input class="btn btn-success" type="submit" />
+
+
+</form>
+

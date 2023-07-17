@@ -1,0 +1,94 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Zero_HungerModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Distribution2">
+    <Key>
+      <PropertyRef Name="Did" />
+    </Key>
+    <Property Name="Did" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Employee_Id" Type="int" Nullable="false" />
+    <Property Name="Restaurent_Id" Type="int" Nullable="false" />
+    <Property Name="Food_Item" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Max_Preservation_Time" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Employees2">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Username" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Password" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="newRequests">
+    <Key>
+      <PropertyRef Name="Cid" />
+    </Key>
+    <Property Name="Cid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Restaurent_Id" Type="int" Nullable="false" />
+    <Property Name="Food_Item" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Max_Preservation_Time" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Restaurents">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="50" />
+    <Property Name="Username" Type="varchar" MaxLength="50" />
+    <Property Name="Password" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <Association Name="FK_Distribution2_Employees2">
+    <End Role="Employees2" Type="Self.Employees2" Multiplicity="1" />
+    <End Role="Distribution2" Type="Self.Distribution2" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employees2">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Distribution2">
+        <PropertyRef Name="Employee_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Distribution2_Restaurents">
+    <End Role="Restaurents" Type="Self.Restaurents" Multiplicity="1" />
+    <End Role="Distribution2" Type="Self.Distribution2" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Restaurents">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Distribution2">
+        <PropertyRef Name="Restaurent_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_newRequests_Restaurents">
+    <End Role="Restaurents" Type="Self.Restaurents" Multiplicity="1" />
+    <End Role="newRequests" Type="Self.newRequests" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Restaurents">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="newRequests">
+        <PropertyRef Name="Restaurent_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Zero_HungerModelStoreContainer">
+    <EntitySet Name="Distribution2" EntityType="Self.Distribution2" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Employees2" EntityType="Self.Employees2" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="newRequests" EntityType="Self.newRequests" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Restaurents" EntityType="Self.Restaurents" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Distribution2_Employees2" Association="Self.FK_Distribution2_Employees2">
+      <End Role="Employees2" EntitySet="Employees2" />
+      <End Role="Distribution2" EntitySet="Distribution2" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Distribution2_Restaurents" Association="Self.FK_Distribution2_Restaurents">
+      <End Role="Restaurents" EntitySet="Restaurents" />
+      <End Role="Distribution2" EntitySet="Distribution2" />
+    </AssociationSet>
+    <AssociationSet Name="FK_newRequests_Restaurents" Association="Self.FK_newRequests_Restaurents">
+      <End Role="Restaurents" EntitySet="Restaurents" />
+      <End Role="newRequests" EntitySet="newRequests" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
